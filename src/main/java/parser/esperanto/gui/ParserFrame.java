@@ -13,12 +13,12 @@ import jpl.Query;
  * @author Timi
  */
 public class ParserFrame extends javax.swing.JFrame {
+    
+    private final String title = "Eszperantó mondatelemző";
 
     /**
      * Creates new form ParserFrame
      */
-    private String title = "Eszperantó mondatelemző";
-    
     public ParserFrame() {
         initComponents();
         this.setTitle(title);
@@ -86,6 +86,7 @@ public class ParserFrame extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new ParserFrame().setVisible(true);
                 consult();
