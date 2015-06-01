@@ -93,7 +93,7 @@ public class ParserFrame extends javax.swing.JFrame {
             }
 
             private void consult() {
-                Query query = new Query("consult('./prolog/parser.pl')");
+                Query query = new Query("consult('./src/main/resources/prolog/parser.pl')");
                 if (!query.hasSolution()) {
                     JOptionPane.showMessageDialog(null, "Nem sikerült a konzultáció");
                 }

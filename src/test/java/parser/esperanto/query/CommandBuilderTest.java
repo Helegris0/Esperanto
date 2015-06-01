@@ -20,7 +20,7 @@ public class CommandBuilderTest {
     @Test
     public void testBuiltCommand() {
         assertEquals("sentence([la, birdo, kantas, belan, kanton], []).", CommandBuilder.buildCommand("La birdo kantas belan kanton."));
-        assertEquals("sentence([junaj, virinoj, kuiras, bongustan, kukon], []).", CommandBuilder.buildCommand("junaj virinoj... kuiras BONGUSTAN kukon!!"));
+        assertEquals("sentence([junaj, virinoj, kuiras, la, bongustan, kukon], []).", CommandBuilder.buildCommand("junaj virinoj... kuiras la BONGUSTAN kukon!!"));
     }
     
     @Test
