@@ -5,6 +5,7 @@
  */
 package parser.esperanto.gui;
 
+import static java.lang.String.join;
 import javax.swing.JOptionPane;
 import jpl.Query;
 
@@ -92,10 +93,7 @@ public class ParserPanel extends javax.swing.JPanel {
             String sentence = txtInput.getText().toLowerCase();
             String[] words = sentence.split(" ");
             String sentenceCommand = "sentence([";
-            for (String word : words) {
-                sentenceCommand += word + ",";
-            }
-            sentenceCommand = sentenceCommand.substring(0, sentenceCommand.length() - 1);
+            sentenceCommand += join(",", words);
             sentenceCommand += "], []).";
             Query setSentence = new Query(sentenceCommand);
             if (!setSentence.query()) {
