@@ -35,14 +35,14 @@ public class ParserPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         txtInput = new javax.swing.JTextField();
         btnParse = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        txtOutput = new javax.swing.JTextArea();
         btnLetterC = new javax.swing.JButton();
         btnLetterG = new javax.swing.JButton();
         btnLetterH = new javax.swing.JButton();
         btnLetterJ = new javax.swing.JButton();
         btnLetterS = new javax.swing.JButton();
         btnLetterU = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtOutput = new javax.swing.JTextArea();
 
         setBackground(new java.awt.Color(0, 153, 0));
 
@@ -56,10 +56,6 @@ public class ParserPanel extends javax.swing.JPanel {
                 btnParseActionPerformed(evt);
             }
         });
-
-        txtOutput.setColumns(20);
-        txtOutput.setRows(5);
-        jScrollPane1.setViewportView(txtOutput);
 
         btnLetterC.setText("ĉ");
         btnLetterC.addActionListener(new java.awt.event.ActionListener() {
@@ -102,6 +98,10 @@ public class ParserPanel extends javax.swing.JPanel {
                 btnLetterUActionPerformed(evt);
             }
         });
+
+        txtOutput.setColumns(20);
+        txtOutput.setRows(5);
+        jScrollPane1.setViewportView(txtOutput);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -146,7 +146,7 @@ public class ParserPanel extends javax.swing.JPanel {
                     .addComponent(btnLetterH)
                     .addComponent(btnLetterG))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
