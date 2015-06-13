@@ -6,8 +6,6 @@
 package parser.esperanto.gui;
 
 import javax.swing.JOptionPane;
-import jpl.Query;
-import org.apache.commons.lang3.StringUtils;
 import parser.esperanto.query.CommandBuilder;
 
 /**
@@ -153,23 +151,9 @@ public class SentenceInputPanel extends javax.swing.JPanel {
 
     private void btnParseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnParseActionPerformed
         txtOutput.setText("");
-
+        
         try {
-            Query setSentence = new Query(CommandBuilder.buildCommand(txtInput.getText()));
-            if (!setSentence.query()) {
-                throw new Exception("Hibás mondat");
-            }
-
-            Query query = new Query(CommandBuilder.getQuery());
-            if (!query.hasSolution()) {
-                throw new Exception("Hibás adat");
-            }
-            String word, partOfSpeech;
-            while (query.hasMoreSolutions()) {
-                word = query.nextSolution().get(CommandBuilder.TERM1).toString();
-                partOfSpeech = StringUtils.remove(query.nextSolution().get(CommandBuilder.TERM2).toString(), "'");
-                txtOutput.append(word + "\t" + partOfSpeech + "\n");
-            }
+            txtOutput.append(CommandBuilder.getResult(txtInput.getText()));
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
