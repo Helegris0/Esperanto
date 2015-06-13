@@ -34,23 +34,25 @@ public class ParserFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        parserPanel1 = new parser.esperanto.gui.ParserPanel();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        sentenceInputPanel1 = new parser.esperanto.gui.SentenceInputPanel();
+        fileInputPanel1 = new parser.esperanto.gui.FileInputPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jTabbedPane1.setBackground(new java.awt.Color(0, 153, 0));
+        jTabbedPane1.addTab("Gépelt mondat", sentenceInputPanel1);
+        jTabbedPane1.addTab("Szövegfájl", fileInputPanel1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(parserPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jTabbedPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(parserPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
         );
 
         pack();
@@ -102,6 +104,8 @@ public class ParserFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private parser.esperanto.gui.ParserPanel parserPanel1;
+    private parser.esperanto.gui.FileInputPanel fileInputPanel1;
+    private javax.swing.JTabbedPane jTabbedPane1;
+    private parser.esperanto.gui.SentenceInputPanel sentenceInputPanel1;
     // End of variables declaration//GEN-END:variables
 }

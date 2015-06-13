@@ -14,12 +14,12 @@ import parser.esperanto.query.CommandBuilder;
  *
  * @author Timi
  */
-public class ParserPanel extends javax.swing.JPanel {
+public class SentenceInputPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form ParserPanel
      */
-    public ParserPanel() {
+    public SentenceInputPanel() {
         initComponents();
     }
 
