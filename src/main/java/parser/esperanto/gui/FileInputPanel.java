@@ -5,15 +5,18 @@
  */
 package parser.esperanto.gui;
 
+import static java.lang.String.join;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import org.apache.commons.io.IOUtils;
+import parser.esperanto.query.CommandBuilder;
 
 /**
  *
@@ -89,16 +92,22 @@ public class FileInputPanel extends javax.swing.JPanel {
 
     private void btnOpenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpenActionPerformed
         JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Szövegfájl (*.txt)", "txt");
+        fileChooser.addChoosableFileFilter(filter);
+        fileChooser.setCurrentDirectory(new File("./src/main/resources/text/"));
+        
         int result = fileChooser.showOpenDialog(this);
         if (result == JFileChooser.APPROVE_OPTION) {
             String path = fileChooser.getSelectedFile().getAbsolutePath();
             try {
                 readFile(path);
+                setOutput();
             } catch (FileNotFoundException ex) {
-                Logger.getLogger(FileInputPanel.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(this, "A fájl nem található");
             } catch (IOException ex) {
-                Logger.getLogger(FileInputPanel.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(this, "Beolvasási hiba");
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, e.getMessage());
             }
         }
     }//GEN-LAST:event_btnOpenActionPerformed
@@ -114,8 +123,26 @@ public class FileInputPanel extends javax.swing.JPanel {
 
     private void readFile(String path) throws FileNotFoundException, IOException {
         try (FileInputStream inputStream = new FileInputStream(path)) {
-            String text = IOUtils.toString(inputStream);
+            String text = IOUtils.toString(inputStream, "UTF-8");
             txtText.setText(text);
         }
+    }
+
+    private void setOutput() {
+        List<String> subResults = new ArrayList<>();
+        
+        for (String sentence : getSentences()) {
+            try {
+                subResults.add(CommandBuilder.getResult(sentence));
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, ex.getMessage());
+            }
+        }
+        
+        txtOutput.setText(join("\n\n", subResults));
+    }
+
+    private String[] getSentences() {
+        return txtText.getText().split("[.!?]");
     }
 }

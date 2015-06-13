@@ -6,6 +6,8 @@
 package parser.esperanto.query;
 
 import static java.lang.String.join;
+import java.util.ArrayList;
+import java.util.List;
 import jpl.Query;
 import org.apache.commons.lang3.StringUtils;
 import static org.apache.commons.lang3.StringUtils.removePattern;
@@ -23,6 +25,10 @@ public class CommandBuilder {
     public static final String TERM2 = "PartOfSpeech";
 
     public static String buildCommand(String sentence) {
+        sentence = sentence.replaceAll(" +", " ");
+        if (sentence.startsWith(" ")) {
+            sentence = sentence.substring(1);
+        }
         sentence = removePattern(sentence.toLowerCase(), PATTERN);
         String[] words = sentence.split(" ");
         String command = "sentence([" + join(", ", words) + "], []).";
@@ -43,13 +49,16 @@ public class CommandBuilder {
         if (!query.hasSolution()) {
             throw new Exception("Hibás adat");
         }
-        String word, partOfSpeech, result = "";
+        
+        String word, partOfSpeech;
+        List<String> rows = new ArrayList<>();
+        
         while (query.hasMoreSolutions()) {
             word = query.nextSolution().get(CommandBuilder.TERM1).toString();
             partOfSpeech = StringUtils.remove(query.nextSolution().get(CommandBuilder.TERM2).toString(), "'");
-            result += word + "\t" + partOfSpeech + "\n";
+            rows.add(word + "\t" + partOfSpeech );
         }
-
-        return result;
+        
+        return join("\n", rows);
     }
 }
