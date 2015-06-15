@@ -11,6 +11,18 @@ sentence -->
 sentence -->
     {retractall(word(_, _))},
 	subject,
+	object,
+	verb.
+
+sentence -->
+    {retractall(word(_, _))},
+	verb,
+	subject,
+	object.
+
+sentence -->
+    {retractall(word(_, _))},
+	subject,
 	substantive_verb,
 	adjective.
 
@@ -21,6 +33,10 @@ subject -->
 
 subject -->
 	personal_pronoun.
+
+verb -->
+	adverb,
+	verb.
 
 object -->
 	article,
@@ -79,69 +95,21 @@ noun_acc([Word|X], X) :-
 
 noun_acc --> [].
 
-personal_pronoun([Word|X], X) :-
-	Word = 'mi',
-    assert(word(Word, 'személyes névmás (E/1), alanyeset')).
+personal_pronoun --> [mi], {assert(word('mi', 'személyes névmás (E/1), alanyeset'))}.
+personal_pronoun --> [vi], {assert(word('vi', 'személyes névmás (/2), alanyeset'))}.
+personal_pronoun --> [li], {assert(word('li', 'személyes névmás (E/3), hímnem, alanyeset'))}.
+personal_pronoun --> [ŝi], {assert(word('ŝi', 'személyes névmás (E/3), nőnem, alanyeset'))}.
+personal_pronoun --> [ĝi], {assert(word('ĝi', 'személyes névmás (E/3), semlegesnem, alanyeset'))}.
+personal_pronoun --> [ni], {assert(word('ni', 'személyes névmás (T/1), alanyeset'))}.
+personal_pronoun --> [ili], {assert(word('ili', 'személyes névmás (T/3), alanyeset'))}.
 
-personal_pronoun([Word|X], X) :-
-	Word = 'vi',
-    assert(word(Word, 'személyes névmás (E/2), alanyeset')).
-
-personal_pronoun([Word|X], X) :-
-	Word = 'li',
-    assert(word(Word, 'személyes névmás (E/3), hímnem, alanyeset')).
-
-personal_pronoun([Word|X], X) :-
-	Word = 'ŝi',
-    assert(word(Word, 'személyes névmás (E/3), nőnem, alanyeset')).
-
-personal_pronoun([Word|X], X) :-
-	Word = 'ĝi',
-    assert(word(Word, 'személyes névmás (E/3), semlegesnem, alanyeset')).
-
-personal_pronoun([Word|X], X) :-
-	Word = 'ni',
-    assert(word(Word, 'személyes névmás (T/1), alanyeset')).
-
-personal_pronoun([Word|X], X) :-
-	Word = 'vi',
-    assert(word(Word, 'személyes névmás (T/2), alanyeset')).
-
-personal_pronoun([Word|X], X) :-
-	Word = 'ili',
-    assert(word(Word, 'személyes névmás (T/3), alanyeset')).
-	
-personal_pronoun_acc([Word|X], X) :-
-	Word = 'min',
-    assert(word(Word, 'személyes névmás (E/1), tárgyeset')).
-
-personal_pronoun_acc([Word|X], X) :-
-	Word = 'vin',
-    assert(word(Word, 'személyes névmás (E/2), tárgyeset')).
-
-personal_pronoun_acc([Word|X], X) :-
-	Word = 'lin',
-    assert(word(Word, 'személyes névmás (E/3), hímnem, tárgyeset')).
-
-personal_pronoun_acc([Word|X], X) :-
-	Word = 'ŝin',
-    assert(word(Word, 'személyes névmás (E/3), nőnem, tárgyeset')).
-
-personal_pronoun_acc([Word|X], X) :-
-	Word = 'ĝin',
-    assert(word(Word, 'személyes névmás (E/3), semlegesnem, tárgyeset')).
-
-personal_pronoun_acc([Word|X], X) :-
-	Word = 'nin',
-    assert(word(Word, 'személyes névmás (T/1), tárgyeset')).
-
-personal_pronoun_acc([Word|X], X) :-
-	Word = 'vin',
-    assert(word(Word, 'személyes névmás (T/2), tárgyeset')).
-
-personal_pronoun_acc([Word|X], X) :-
-	Word = 'ilin',
-    assert(word(Word, 'személyes névmás (T/3), tárgyeset')).
+personal_pronoun_acc --> [min], {assert(word('min', 'személyes névmás (E/1), tárgyeset'))}.
+personal_pronoun_acc --> [vin], {assert(word('vin', 'személyes névmás (/2), tárgyeset'))}.
+personal_pronoun_acc --> [lin], {assert(word('lin', 'személyes névmás (E/3), hímnem, tárgyeset'))}.
+personal_pronoun_acc --> [ŝin], {assert(word('ŝin', 'személyes névmás (E/3), nőnem, tárgyeset'))}.
+personal_pronoun_acc --> [ĝin], {assert(word('ĝin', 'személyes névmás (E/3), semlegesnem, tárgyeset'))}.
+personal_pronoun_acc --> [nin], {assert(word('nin', 'személyes névmás (T/1), tárgyeset'))}.
+personal_pronoun_acc --> [ilin], {assert(word('ilin', 'személyes névmás (T/3), tárgyeset'))}.
 
 substantive_verb([Word|X], X) :-
 	Word = 'estas',

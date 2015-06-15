@@ -5,6 +5,9 @@
  */
 package parser.esperanto.gui;
 
+import java.awt.event.ActionEvent;
+import javax.swing.AbstractAction;
+import javax.swing.Action;
 import javax.swing.JOptionPane;
 import parser.esperanto.query.CommandBuilder;
 
@@ -13,12 +16,21 @@ import parser.esperanto.query.CommandBuilder;
  * @author Timi
  */
 public class SentenceInputPanel extends javax.swing.JPanel {
+    
+    private Action action = new AbstractAction() {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            doIt();
+        }
+    };
 
     /**
      * Creates new form ParserPanel
      */
     public SentenceInputPanel() {
         initComponents();
+        txtInput.addActionListener(action);
     }
 
     /**
@@ -150,37 +162,31 @@ public class SentenceInputPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnParseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnParseActionPerformed
-        txtOutput.setText("");
-        
-        try {
-            txtOutput.append(CommandBuilder.getResult(txtInput.getText()));
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.getMessage());
-        }
+        doIt();
     }//GEN-LAST:event_btnParseActionPerformed
 
     private void btnLetterCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLetterCActionPerformed
-        txtInput.setText(txtInput.getText() + "ĉ");
+        insertLetter("ĉ");
     }//GEN-LAST:event_btnLetterCActionPerformed
 
     private void btnLetterGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLetterGActionPerformed
-        txtInput.setText(txtInput.getText() + "ĝ");
+        insertLetter("ĝ");
     }//GEN-LAST:event_btnLetterGActionPerformed
 
     private void btnLetterHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLetterHActionPerformed
-        txtInput.setText(txtInput.getText() + "ĥ");
+        insertLetter("ĥ");
     }//GEN-LAST:event_btnLetterHActionPerformed
 
     private void btnLetterJActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLetterJActionPerformed
-        txtInput.setText(txtInput.getText() + "ĵ");
+        insertLetter("ĵ");
     }//GEN-LAST:event_btnLetterJActionPerformed
 
     private void btnLetterSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLetterSActionPerformed
-        txtInput.setText(txtInput.getText() + "ŝ");
+        insertLetter("ŝ");
     }//GEN-LAST:event_btnLetterSActionPerformed
 
     private void btnLetterUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLetterUActionPerformed
-        txtInput.setText(txtInput.getText() + "ŭ");
+        insertLetter("ŭ");
     }//GEN-LAST:event_btnLetterUActionPerformed
 
 
@@ -197,5 +203,22 @@ public class SentenceInputPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtInput;
     private javax.swing.JTextArea txtOutput;
     // End of variables declaration//GEN-END:variables
+
+    private void doIt() {
+        txtOutput.setText("");
+        
+        try {
+            txtOutput.append(CommandBuilder.getResult(txtInput.getText()));
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+    }
+
+    private void insertLetter(String letter) {
+        String formerText = txtInput.getText();
+        int position = txtInput.getCaretPosition();
+        txtInput.setText(formerText.substring(0, position) + letter + formerText.substring(position));
+        txtInput.setCaretPosition(position + letter.length());
+    }
 
 }
