@@ -13,7 +13,7 @@ import jpl.Query;
  * @author Timi
  */
 public class ParserFrame extends javax.swing.JFrame {
-    
+
     private final String title = "Eszperantó mondatelemző";
 
     /**

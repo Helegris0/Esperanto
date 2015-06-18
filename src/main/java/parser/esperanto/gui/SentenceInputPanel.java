@@ -18,7 +18,7 @@ import parser.esperanto.query.CommandBuilder;
 public class SentenceInputPanel extends javax.swing.JPanel {
     
     private Action action = new AbstractAction() {
-
+        
         @Override
         public void actionPerformed(ActionEvent e) {
             doIt();
@@ -213,12 +213,12 @@ public class SentenceInputPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
     }
-
+    
     private void insertLetter(String letter) {
         String formerText = txtInput.getText();
         int position = txtInput.getCaretPosition();
         txtInput.setText(formerText.substring(0, position) + letter + formerText.substring(position));
         txtInput.setCaretPosition(position + letter.length());
     }
-
+    
 }

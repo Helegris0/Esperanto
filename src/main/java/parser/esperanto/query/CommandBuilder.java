@@ -49,16 +49,16 @@ public class CommandBuilder {
         if (!query.hasSolution()) {
             throw new Exception("Hibás adat");
         }
-        
+
         String word, partOfSpeech;
         List<String> rows = new ArrayList<>();
-        
+
         while (query.hasMoreSolutions()) {
             word = query.nextSolution().get(CommandBuilder.TERM1).toString();
             partOfSpeech = StringUtils.remove(query.nextSolution().get(CommandBuilder.TERM2).toString(), "'");
-            rows.add(word + "\t" + partOfSpeech );
+            rows.add(word + "\t" + partOfSpeech);
         }
-        
+
         return join("\n", rows);
     }
 }

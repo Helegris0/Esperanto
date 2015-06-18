@@ -111,17 +111,9 @@ personal_pronoun_acc --> [ĝin], {assert(word('ĝin', 'személyes névmás (E/3)
 personal_pronoun_acc --> [nin], {assert(word('nin', 'személyes névmás (T/1), tárgyeset'))}.
 personal_pronoun_acc --> [ilin], {assert(word('ilin', 'személyes névmás (T/3), tárgyeset'))}.
 
-substantive_verb([Word|X], X) :-
-	Word = 'estas',
-    assert(word(Word, 'létige, jelen idő')).
-
-substantive_verb([Word|X], X) :-
-	Word = 'estis',
-    assert(word(Word, 'létige, múlt idő')).
-
-substantive_verb([Word|X], X) :-
-	Word = 'estos',
-    assert(word(Word, 'létige, jövő idő')).
+substantive_verb --> [estas], {assert(word('estas', 'létige, jelen idő'))}.
+substantive_verb --> [estis], {assert(word('estis', 'létige, múlt idő'))}.
+substantive_verb --> [estos], {assert(word('estos', 'létige, jövő idő'))}.
 
 verb([Word|X], X) :-
 	Word =~ '.+as$',

@@ -95,7 +95,7 @@ public class FileInputPanel extends javax.swing.JPanel {
         FileNameExtensionFilter filter = new FileNameExtensionFilter("Szövegfájl (*.txt)", "txt");
         fileChooser.addChoosableFileFilter(filter);
         fileChooser.setCurrentDirectory(new File("./src/main/resources/text/"));
-        
+
         int result = fileChooser.showOpenDialog(this);
         if (result == JFileChooser.APPROVE_OPTION) {
             String path = fileChooser.getSelectedFile().getAbsolutePath();
@@ -130,7 +130,7 @@ public class FileInputPanel extends javax.swing.JPanel {
 
     private void setOutput() {
         List<String> subResults = new ArrayList<>();
-        
+
         for (String sentence : getSentences()) {
             try {
                 subResults.add(CommandBuilder.getResult(sentence));
@@ -138,7 +138,7 @@ public class FileInputPanel extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, ex.getMessage());
             }
         }
-        
+
         txtOutput.setText(join("\n\n", subResults));
     }
 
